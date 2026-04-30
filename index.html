@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR.G.B. ART</title>
+    <style>
+        /* === BASE RESET === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #050505; /* Темний фон сторінки */
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            padding-top: 80px; /* Відступ, щоб контент не ховався під фіксованим хедером */
+        }
+
+        /* === HEADER STYLES === */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            height: 75px;
+            background-color: #111111;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px); /* Легке розмиття фону під хедером */
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- Логотип --- */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.2em;
+        }
+
+        .logo span {
+            color: #00ff9d; /* Акцентний колір для частини логотипу */
+        }
+
+        /* --- Навігація (Центр) --- */
+        .main-nav {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Активний стан та Hover */
+        .nav-link:hover {
+            color: #ffffff;
+            transform: scale(1.05); /* Легке збільшення */
+        }
+
+        /* Підкреслення */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #00ff9d; /* Колір лінії */
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px #00ff9d;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #ffffff;
+        }
+
+        /* --- Права частина (Кнопка + Мова) --- */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Перемикач мови */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #555;
+            cursor: pointer;
+            padding: 2px;
+            transition: color 0.2s;
+        }
+
+        .lang-btn.active {
+            color: #fff;
+        }
+
+        .lang-btn:hover {
+            color: #00ff9d;
+        }
+
+        /* Головна кнопка */
+        .btn-create {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #00ff9d;
+            background-color: transparent;
+            color: #00ff9d;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-create:hover {
+            background-color: #00ff9d;
+            color: #111111; /* Темний текст при наведенні */
+            transform: translateY(-2px); /* Підйом вгору */
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+        }
+
+        /* === MOBILE RESPONSIVE === */
+        @media (max-width: 900px) {
+            .main-nav {
+                display: none; /* Приховуємо меню на малих екранах (або замінюємо на бургер) */
+            }
+            
+            .header-container {
+                justify-content: center; /* Центруємо контент на мобільному */
+            }
+
+            .logo {
+                position: absolute;
+                left: 20px;
+            }
+
+            .header-actions {
+                position: absolute;
+                right: 20px;
+                gap: 1rem;
+            }
+            
+            .btn-create {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+            
+            <!-- Логотип (Зліва) -->
+            <a href="/" class="logo">
+                QR.G.B. <span>ART</span>
+            </a>
+
+            <!-- Навігація (Центр) -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#generator" class="nav-link">Generator</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+
+            <!-- Кнопки (Справа) -->
+            <div class="header-actions">
+                <!-- Перемикач мови -->
+                <div class="lang-switcher">
+                    <button class="lang-btn active">UA</button>
+                    <span style="color:#333">/</span>
+                    <button class="lang-btn">EN</button>
+                </div>
+
+                <!-- Головна кнопка -->
+                <a href="#create" class="btn-create">
+                    Create QR Art
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- CONTENT FOR VISUAL CHECK -->
+    <main style="padding: 2rem; text-align: center; color: #666;">
+        <h1>Page Content Area</h1>
+        <p>Scroll down to see the sticky header effect.</p>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </main>
+
+</body>
+</html>
